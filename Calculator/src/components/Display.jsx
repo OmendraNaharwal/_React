@@ -1,7 +1,7 @@
 import styles from './Display.module.css'
-const Display=()=>{
+const Display=({value})=>{
   return (
-    <input type="text" id='display' className={styles.display} />
+    <input type="text" id='display' className={styles.display} value={value} readOnly />
   )
 }
 
