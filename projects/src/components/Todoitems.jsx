@@ -1,19 +1,18 @@
 import Todoitem from "./Todoitem";
 
-const Todoitems = ({ items }) => {
+const Todoitems = ({ items, onDeleteClick }) => {
   return (
     <div className="items-container">
       {items && items.length > 0 ? (
-        items.map((item) => (
+        items.map((item, idx) => (
           <Todoitem
-            key={item.todoname}
-            duedate={item.duedate}
+            key={idx}
             todoname={item.todoname}
+            duedate={item.duedate}
+            onDeleteClick={onDeleteClick}
           />
         ))
-      ) : (
-        <p>No todo items found.</p>
-      )}
+      ) : null}
     </div>
   );
 };
