@@ -1,5 +1,5 @@
 const WelcomeMsg = () => {
-  return <h1>Welcome to the Todo App</h1>;
+  return <h1>Enjoy Your Day</h1>;
 };
 
 export default WelcomeMsg;
