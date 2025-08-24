@@ -1,3 +1,5 @@
+import { MdDelete } from "react-icons/md";
+
 function Todoitem({todoname,duedate,onDeleteClick}){
   return (
     <div style={{borderRadius: "2px", padding: "8px", marginBottom: "8px"}}>
@@ -23,7 +25,7 @@ function Todoitem({todoname,duedate,onDeleteClick}){
               }}
               onClick={() => onDeleteClick(todoname)}
             >
-              Delete
+              Delete <MdDelete />
             </button>
           </div>
         </div>
