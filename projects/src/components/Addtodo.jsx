@@ -1,29 +1,27 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { IoMdAddCircle } from "react-icons/io";
+import { Todoitemscontext } from "../store/todo-items-store.jsx";
 
 
-function Addtodo({ onNewitem }) {
+function Addtodo() {
   const [todoname, settodoname] = useState('');
   const [duedate, setduedate] = useState('');
+  const { addNewitem } = useContext(Todoitemscontext);
 
-  const handlenamechange = (event) => {
-    settodoname(event.target.value);
-  };
+  const handlenamechange = (event) => settodoname(event.target.value);
+  const handleduedatechange = (event) => setduedate(event.target.value);
 
-  const handleduedatechange = (event) => {
-    setduedate(event.target.value);
-  };
-
-  const handleaddbuttonclicked = () => {
+  const handleaddbuttonclicked = (event) => {
+    event.preventDefault();
     if (!todoname || !duedate) return;
-    onNewitem(todoname, duedate);
+    addNewitem(todoname, duedate);
     settodoname('');
     setduedate('');
   };
 
   return (
     <div>
-      <div className="row">
+      <form className="row" onSubmit={handleaddbuttonclicked}>
         <div className="col">
           <input
             type="text"
@@ -41,23 +39,19 @@ function Addtodo({ onNewitem }) {
         </div>
         <div className="col">
           <button
-            type="button"
+            type="submit"
             className="btn btn-primary"
             style={{
-              // "--bs-btn-padding-y": ".25rem",
-              // "--bs-btn-padding-x": ".5rem",
-              // "--bs-btn-font-size": ".75rem",
               width: "100%",
               marginTop: "4px",
               backgroundColor: "green",
               borderColor: "green",
             }}
-            onClick={handleaddbuttonclicked}
           >
             Add <IoMdAddCircle />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
