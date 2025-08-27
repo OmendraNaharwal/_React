@@ -6,6 +6,7 @@ import "./App.css";
 import Createpost from "./components/Createpost";
 import Post from "./components/Post";
 import Postlist from "./components/Postlist";
+import { useState } from "react";
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <Sidebar />
+      <Sidebar selectedTab={selectedTab} />
       <div className="content">
         <Header />
         {selectedTab === "Home" ? (
