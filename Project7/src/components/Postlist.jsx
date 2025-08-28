@@ -4,7 +4,6 @@ import { PostListContext } from "../store/post-list-store";
 
 const Postlist = () => {
   const { postlist } = useContext(PostListContext);
-
   return (
     <div>
       {postlist.map((post) => (<Post key={post.id} post={post} />
@@ -12,4 +11,4 @@ const Postlist = () => {
     </div>
   );
 }
-export default Postlist;
+export { Postlist };

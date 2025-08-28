@@ -16,7 +16,7 @@ const postlistreducer = (currpostlist ,action) =>{
   return newpostlist;
 }
 
-const PostListProvider = ({children})=>{
+export const PostListProvider = ({children})=>{
 
   const [postlist, dispatchpostlist] = useReducer(
     postlistreducer,
@@ -61,4 +61,4 @@ const Default_postlist = [
 }
 ];
 
-export default PostListProvider;
+// export default PostListProvider;

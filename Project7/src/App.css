@@ -30,3 +30,10 @@
    */
   float: right;
 }
+.create-post{
+  width: 80%;
+  border: 1px solid rgb(141, 141, 141) ;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+}

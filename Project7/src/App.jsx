@@ -5,13 +5,13 @@ import Sidebar from "./components/Sidebar";
 import "./App.css";
 import Createpost from "./components/Createpost";
 import Post from "./components/Post";
-import Postlist from "./components/Postlist";
+import {Postlist} from "./components/Postlist";
 import { useState } from "react";
-import PostListProvider from "./store/post-list-store";
+import {PostListProvider} from "./store/post-list-store";
 
 function App() {
 
-  const [selectedTab, setSelectedTab] = useState("Home");
+  const [selectedTab, setSelectedTab] = useState("Create");
 
   return (
     <PostListProvider>
