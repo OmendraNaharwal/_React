@@ -18,15 +18,12 @@ const Post=({post})=>{
         </h5>
         <p className="card-text">{post.body}</p>
         <div className="post-footer"></div>
-          {post.tags.map(tag => (
+          {post.tags.map((tag) => (
             <span key={tag} className="badge bg-secondary me-1 hashtag">{tag}</span>
           ))}
-          <button type="button" className="btn btn-primary position-relative reaction">
-            {post.reaction}
-          <span className="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-            <span className="visually-hidden">New alerts</span>
-          </span>
-        </button>
+          <div className="alert alert-success reaction" role="alert">
+          This post has been reacted by {post.reaction} people.
+        </div>
       </div>
     </div>
   )

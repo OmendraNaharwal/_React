@@ -5,29 +5,42 @@ import { PostListContext } from "../store/post-list-store";
 const Createpost = () =>{
   const {addpost} = useContext(PostListContext);
 
-  const userId = useRef();
-  const title = useRef();
-  const body = useRef();
-  const reaction = useRef();
-  const tags = useRef();
+  const userIdelement = useRef();
+  const titleelement = useRef();
+  const bodyelement = useRef();
+  const reactionelement = useRef();
+  const tagselement = useRef();
 
   const handlesubmit = (event) => {
     event.preventDefault();
-  }
+    const userId = userIdelement.current.value;
+    const posttitle = titleelement.current.value;
+    const postbody = bodyelement.current.value;
+    const reaction = reactionelement.current.value;
+    const tags = tagselement.current.value.split(" ");
+
+    userIdelement.current.value = "";
+    titleelement.current.value = "";
+    bodyelement.current.value = "";
+    reactionelement.current.value = "";
+    tagselement.current.value = "";
+
+    addpost(userId, posttitle, postbody, reaction, tags);
+  };
 
   return (
     <form className="create-post" onSubmit={handlesubmit}>
 
       <div className="mb-3">
         <label htmlFor="userId" className="form-label">
-          Enter User ID
+          Enter your User Id here
         </label>
         <input 
         type="text" 
-        ref={userId}
+        ref={userIdelement}
         className="form-control" 
         id="userId" 
-        placeholder="Enter User ID"
+        placeholder="Your User ID"
         />
       </div>
 
@@ -37,7 +50,7 @@ const Createpost = () =>{
         </label>
         <input 
         type="text" 
-        ref={title}
+        ref={titleelement}
         className="form-control" 
         id="title" 
         placeholder="Enter post title"
@@ -50,7 +63,7 @@ const Createpost = () =>{
         </label>
         <textarea 
         rows = "4"
-        ref={body}
+        ref={bodyelement}
         className="form-control" 
         id="body" 
         placeholder="Tell us more about it"
@@ -63,7 +76,7 @@ const Createpost = () =>{
         </label>
         <input 
         type="number"
-        ref={reaction}
+        ref={reactionelement}
         className="form-control" 
         id="reaction" 
         placeholder="Total Reactions"
@@ -76,13 +89,15 @@ const Createpost = () =>{
         </label>
         <input 
         type="text"
-        ref={tags}
+        ref={tagselement}
         className="form-control" 
         id="tags" 
         placeholder="Enter post tags"
         />
       </div>
-      
+
+      <button type="submit" className="btn btn-primary">Post</button>
+
     </form>
   )
 }

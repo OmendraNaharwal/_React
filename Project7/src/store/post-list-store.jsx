@@ -12,6 +12,8 @@ const postlistreducer = (currpostlist ,action) =>{
   let newpostlist = currpostlist;
   if(action.type === "DELETE"){
     newpostlist = currpostlist.filter(post => post.id !== action.payload);
+  }else if(action.type === "ADD") {
+    newpostlist = [ action.payload, ...currpostlist];
   }
   return newpostlist;
 }
@@ -23,8 +25,18 @@ export const PostListProvider = ({children})=>{
     Default_postlist
   );
 
-  const addpost = () => {
-    
+  const addpost = (userId, posttitle, postbody, reaction, tags) => {
+    dispatchpostlist({
+      type: 'ADD', 
+      payload: { 
+        id: Date.now(), 
+        title: posttitle, 
+        body: postbody, 
+        reaction: reaction,
+        userId: userId,
+        tags: tags 
+      }
+    });
   }
 
   const deletepost =(postid) =>{

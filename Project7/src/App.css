@@ -21,14 +21,14 @@
 }
 
 .hashtag {
-  /* display: flex; */
+  margin-top: 10px;
   gap: 5px;
+  background-color: blue;
 }
 
 .reaction {
-  /* position: relative;
-   */
-  float: right;
+  padding: 10px;
+  margin: 10px;
 }
 .create-post{
   width: 80%;
