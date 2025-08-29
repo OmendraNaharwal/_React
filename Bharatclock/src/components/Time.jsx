@@ -11,6 +11,7 @@ function Time(){
     return () => clearInterval(intervalId);
   }, []);
 
+  
   return (  
     <p>This is the current date and time: {time.toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata" })} - {time.toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata" })}</p>
   )
