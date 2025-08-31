@@ -1,42 +1,19 @@
-import { useContext,useEffect,useState } from "react";
 import Post from "./Post";
-import { PostListContext } from "../store/post-list-store";
+import { useLoaderData } from "react-router-dom";
 import Welcomemsg from "./Welcomemsg";
-import Loading from "./loading";
+import { Suspense } from "react";
 
 const Postlist = () => {
-  const { postlist, addposts } = useContext(PostListContext);
+  const postList = useLoaderData();
 
-  const [fetching, setfetching] = useState(false);
-
-  useEffect(() => {
-    setfetching(true);
-
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    fetch("https://dummyjson.com/posts", { signal })
-      .then((res) => res.json())
-      .then((data) => {
-        addposts(data.posts);
-        setfetching(false);
-      });
-
-    return () => {
-      controller.abort();
-    };
-  }, []);
-  
   return (
-    <div>
-      {fetching && <Loading />}
-      {
-        !fetching && postlist.length===0 && <Welcomemsg />
-      }
-      { !fetching && postlist.map((post) => (<Post key={post.id} post={post} />
-    ))}
+    <div className="post-list">
+      {(!postList || postList.length === 0) && <Welcomemsg />}
+      {postList && postList.map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
     </div>
   );
-}
+};
 
-export { Postlist };
+export default Postlist;

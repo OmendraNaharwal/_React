@@ -1,71 +1,62 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import Post from "../components/Post";
 
-
 export const PostListContext = createContext({
-  postlist: [],
-  addpost: () => {},
-  addposts : () => {},
-  deletepost: () => {}
+  postList: [],
+  addPost: () => {},
+  deletePost: () => {},
 });
 
-const postlistreducer = (currpostlist ,action) =>{
-  let newpostlist = currpostlist;
-  if(action.type === "DELETE"){
-    newpostlist = currpostlist.filter(post => post.id !== action.payload);
-  }else if(action.type === "ADD") {
-    newpostlist = [ action.payload, ...currpostlist];
+const postListReducer = (currPostList, action) => {
+  let newPostList = currPostList;
+  if (action.type === "DELETE_POST") {
+    newPostList = currPostList.filter(
+      (post) => post.id !== action.payload.postId
+    );
+  } else if (action.type === "ADD_POST") {
+    newPostList = [action.payload, ...currPostList];
   }
-  else if(action.type === "ADD_POSTS") {
-    newpostlist = [ ...action.payload.posts, ...currpostlist];
-  }
-  return newpostlist;
-}
+  return newPostList;
+};
 
-export const PostListProvider = ({children})=>{
+export const PostListProvider = ({ children }) => {
+  const [postList, dispatchPostList] = useReducer(postListReducer, []);
 
-  const [postlist, dispatchpostlist] = useReducer(
-    postlistreducer,
-    []
-  );
-
-  const addpost = (userId, posttitle, postbody, reaction, tags) => {
-    dispatchpostlist({
-      type: 'ADD', 
-      payload: { 
-        id: Date.now(), 
-        title: posttitle, 
-        body: postbody, 
+  const addPost = (userId, posttitle, postbody, reaction, tags) => {
+    dispatchPostList({
+      type: "ADD_POST",
+      payload: {
+        id: Date.now(),
+        title: posttitle,
+        body: postbody,
         reaction: reaction,
         userId: userId,
-        tags: tags 
-      }
+        tags: tags,
+      },
     });
-  }
-  const addposts = (posts) => {
-    dispatchpostlist({
-      type: 'ADD_POSTS', 
-      payload: { 
-        posts
-      }
-    });
-  }
+  };
 
-  const deletepost =(postid) =>{
-    dispatchpostlist({type: 'DELETE', payload: postid});
-  }
+  const deletePost = (postId) => {
+    dispatchPostList({
+      type: "DELETE_POST",
+      payload: {
+        postId,
+      },
+    });
+  };
 
   return (
-    <PostListContext.Provider value={{
-      postlist,
-      addpost,
-      deletepost,
-      addposts 
-    }}>
+    <PostListContext.Provider
+      value={{
+        postList,
+        addPost,
+        deletePost,
+      }}
+    >
       {children}
     </PostListContext.Provider>
-  )
-}
+  );
+};
 
 
 

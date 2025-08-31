@@ -1,10 +1,8 @@
-const Welcomemsg = ({ongetposts}) => {
+const Welcomemsg = () => {
   return (
-    <div className="welcomemsg">
-      <h1 className="welcomemsg" role="alert">
-        There is No Post!
-      </h1>
-    </div>
+    <center className="welcome-message">
+      <h1>There are no posts</h1>
+    </center>
   );
 };
 

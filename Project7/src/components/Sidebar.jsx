@@ -1,9 +1,6 @@
-const Sidebar = ({selectedTab , setSelectedTab}) => {
+import { Link } from "react-router-dom";
 
-  const handleonclick = (tabname) => {
-    setSelectedTab(tabname);
-  }
-  
+const Sidebar = () => {
   return (
     <div
       className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar"
@@ -25,9 +22,9 @@ const Sidebar = ({selectedTab , setSelectedTab}) => {
       </a>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
-        <li className="nav-item"
-        onClick={()=> {handleonclick("Home")}}>
-          <a href="#" className={`nav-link text white ${selectedTab==='Home' && 'active'}`} aria-current="page">
+        <li className="nav-item">
+          <Link to="/" className="nav-link text-white" 
+          aria-current="page">
             <svg
               className="bi pe-none me-2"
               width="16"
@@ -37,10 +34,10 @@ const Sidebar = ({selectedTab , setSelectedTab}) => {
               <use href="#home"></use>
             </svg>
             Home
-          </a>
+          </Link>
         </li>
-        <li onClick={()=> {handleonclick("Create Post")}}>
-          <a href="#" className={`nav-link text white ${selectedTab==='Create Post' && 'active'}`} aria-current="page">
+        <li>
+          <Link to="/create-post" className="nav-link text-white" aria-current="page">
             <svg
               className="bi pe-none me-2"
               width="16"
@@ -50,7 +47,7 @@ const Sidebar = ({selectedTab , setSelectedTab}) => {
               <use href="#speedometer2"></use>
             </svg>
             Create Post
-          </a>
+          </Link>
         </li>
       </ul>
       <hr />
