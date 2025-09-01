@@ -18,7 +18,6 @@ const counterReducer = (store = initialState ,action) => {
       return { ...store, counter: store.counter - Number(action.payload.num) };
     case "PRIVACYTOGGLE":
       return { ...store, privacy: !store.privacy };
-      
     default:
       return store;
   }
